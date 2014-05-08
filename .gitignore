@@ -1,0 +1,14 @@
+*.o
+*.in
+Makefile
+install-sh
+depcomp
+.deps
+autom4te.cache
+aclocal.m4
+config.*
+configure
+missing
+.cash_history
+stamp*
+cash
