@@ -1,0 +1,125 @@
+
+CASH - The C Again SHell
+
+O intuito inicial deste projeto era desenvolver um shell que aceitasse uma syntase baseada na linguagem C, porém muito mais poderoso que o conhecido CSH. Durante o período de desenvolvimento sempre visamos obter o máximo de compatibilidade com o BASH, exemplo claro disso é a leitura do teclado e da variável PS1, cujo os caracteres de controle são exatamente os mesmos do BASH. Algumas funcionalidades planejadas ainda não estão prontas, devido a falta de tempo dos desenvolvedores. As funcionalidades do CASH são citadas abaixo:
+
+
+Leitura de Teclado
+=======================================================
+
+O CASH visa prover ao usuário um terminal amigável e funcional.
+As seguintes teclas (e suas combinações) podem ser utilizadas:
+
+Backspace - Apaga caracter anterior
+Home - Move o cursor para o inicio da linha
+End  - Move o cursor para o final
+Setas direita e esquerda - Guia o cursor através da linha
+Setas para cima e para baixo ou page up e page down - Acessa o historico de comandos
+Ctrl + K - Apaga os caracteres do cursor até o final da linha
+Ctrl + L - Limpa a tela toda
+Ctrl + W - Apaga a palavra mais perto do cursor
+Tab - Auto-completar
+
+Variável PS1
+=======================================================
+
+O CASH possui total compatibilidade com o BASH em relação a variável PS1. TODOS os caracteres de controle
+suportados pelo BASH são também suportados pelo CASH.
+
+Histórico de Comandos
+=======================================================
+
+Os comandos digitados pelo usuário ficam gravados no arquivo .cash_profile, quando o cash é iniciado, 
+este arquivo é lido e o histórico é carregado numa lista circular e numa tabela hash. A lista circular é
+utilizada para o rápido acesso via teclado, já a tabela HASH é utilizada para a busca reversa, apesar de toda a tabela estar pronta e funcionando, não foi possível terminar a leitura e busca via terminal. Na saída do CASH
+o histórico é atualizado no arquivo citado.
+
+Auto-completar
+=======================================================
+
+O CASH possui um auto-completar simples porém extremamente funcional, que pode ser utilizado para completar
+nomes de arquivos e diretórios.
+
+Executando comandos
+=======================================================
+
+O CASH permite que qualquer comando seja executado, a variável ambiente PATH é utilizada na busca de um comando
+digitado, permitindo que o usuário utilize apenas o nome do comando, e não seu caminho completo. Esta busca é
+feita pela chamada de sistema (syscall) execvp. O CASH permite redirecioamento de saída e entrada da forma:
+
+comando1 > saida.txt
+comando1 >> saida.txt
+
+comando2 < entrada.txt
+comando2 << entrada.txt
+
+No primeiro exemplo, o operador > é utilizado para gravar a saída gerada por "comando1" num novo arquivo (saida.txt). O operador >> possui o mesmo efeito, porém ao invés do arquivo de saida ser criado e/ou truncado, os dados são adicionados ao final do arquivo (saida.txt).
+
+Pipes também podem ser utilizados no CASH:
+
+comando1 | comando2
+
+Neste exemplo a saída gerada por "comando1" será utilizada como entrada para "comando2". Uma observação importante é que o CASH possui toda a estrura para executar multiplos pipes, da forma:
+
+comando1 | comando2 | comando3 ....
+
+Gerando uma árvore binária com a ordem de execução correta, etc, porém, não foi possível terminar esta 
+implementação pois além de falta de tempo, tivemos problemas com o redirecionamento de saídas e entradas de processos.
+
+Controle de Jobs
+=======================================================
+
+O CASH possui o controle de Jobs através dos comandos "built-in":
+
+jobs - Lista os processos correntes (parados, mortos, etc)
+bg - Coloca um processo em background
+fg - Coloca um processo em foreground
+
+A sintaxe destes comandos também são iguais a do BASH. As combinações de teclas abaixo podem ser utilizadas:
+
+Ctrl-Z - Para (pausa) o processo corrente
+Ctrl-C - Envia um sinal SIGINT para o processo corrente (tenta matar o processo).
+
+Obs: O comando fg está com o mesmo comportamento do comando bg, ou seja, o terminal não é travado após o processo voltar a rodar (BUG).
+
+Leitura de scripts
+=======================================================
+
+Todo um analisador foi desenvolvido para o CASH, porém está em estado de testes e pouco funcional ainda. Porém
+o código já está unido ao CASH.
+
+Compilando o CASH
+=======================================================
+
+Basta utilizar o comando make na pasta src
+
+$ cd src
+$ make
+
+Para executar o cash
+
+$ ./cash
+
+ou
+
+$ ./cash <script.psc>
+
+Para executar um script escrito em CASH
+
+ou
+
+$ ./cash -hv
+Para exibir um menu de ajuda e informações sobre a versão.
+
+Contato
+=======================================================
+
+Desenvolvedores:
+
+Matheus Borges Teixeira   (arkanos.matheus at gmail.com)
+Renê de Souza Pinto       (rene at grad.icmc.usp.br)
+Thiago Camargo Fernandes  (thiagocf at grad.icmc.usp.br)
+
+
+
+You don't need ca$h to use CASH! Have fun! :)
