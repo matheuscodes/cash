@@ -272,11 +272,13 @@ echo "Here is the end of the tutorial/manual/success_coverage_test!";
 /* THE END */
 ```
 
-## Developers Contact
+## Developers
 
-Matheus Borges Teixeira	 (matheus.bt at gmail.com)
-Renê de Souza Pinto	 (rene at renesp.com.br)
-Thiago Camargo Fernandes (thiagocf at grad.icmc.usp.br)
+Matheus Borges Teixeira, matheus.bt at gmail.com
+
+Renê de Souza Pinto, rene at renesp.com.br
+
+Thiago Camargo Fernandes, thiagocf at grad.icmc.usp.br
 
 ## License 
 
